@@ -1,0 +1,19 @@
+[package]
+name = "iced_skia"
+version = "0.1.0"
+edition = "2021"
+
+
+[dependencies]
+skia-safe = { version = "0.56.1", features = ["gl", "x11"] }
+gl-rs = { package = "gl", version = "0.14.0" }
+
+
+[dependencies.iced_native]
+version = "0.6"
+path = "../native"
+
+[dependencies.iced_graphics]
+version = "0.4"
+path = "../graphics"
+features = ["font-fallback", "font-icons", "opengl"]

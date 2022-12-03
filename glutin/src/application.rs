@@ -115,6 +115,9 @@ where
         }
     };
 
+    println!("{:?}", context.get_pixel_format());
+    println!("{:?}", context.window().inner_size());
+
     #[allow(unsafe_code)]
     let (compositor, renderer) = unsafe {
         C::new(compositor_settings, |address| {

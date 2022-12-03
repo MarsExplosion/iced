@@ -3,6 +3,7 @@
 use crate::compositor::Information;
 use crate::{Color, Error, Size, Viewport};
 
+
 use core::ffi::c_void;
 
 /// A basic OpenGL compositor.

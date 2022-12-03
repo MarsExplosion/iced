@@ -39,6 +39,8 @@ smol = ["iced_futures/smol"]
 palette = ["iced_core/palette"]
 # Enables querying system information
 system = ["iced_winit/system"]
+# Enables skia rendering
+skia = ["iced_skia", "iced_glutin"]
 
 [badges]
 maintenance = { status = "actively-developed" }
@@ -56,6 +58,7 @@ members = [
     "wgpu",
     "winit",
     "examples/*",
+    "skia",
 ]
 
 [dependencies]
@@ -66,6 +69,7 @@ iced_graphics = { version = "0.4", path = "graphics" }
 iced_winit = { version = "0.5", path = "winit", features = ["application"] }
 iced_glutin = { version = "0.4", path = "glutin", optional = true }
 iced_glow = { version = "0.4", path = "glow", optional = true }
+iced_skia = { version = "0.1", path = "skia", optional = true }
 thiserror = "1.0"
 
 [dependencies.image_rs]

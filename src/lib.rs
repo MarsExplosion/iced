@@ -148,17 +148,17 @@
 //! [Elm]: https://elm-lang.org/
 //! [The Elm Architecture]: https://guide.elm-lang.org/architecture/
 #![doc(
-    html_logo_url = "https://raw.githubusercontent.com/iced-rs/iced/9ab6923e943f784985e9ef9ca28b10278297225d/docs/logo.svg"
+html_logo_url = "https://raw.githubusercontent.com/iced-rs/iced/9ab6923e943f784985e9ef9ca28b10278297225d/docs/logo.svg"
 )]
 #![deny(
-    missing_debug_implementations,
-    missing_docs,
-    unused_results,
-    clippy::extra_unused_lifetimes,
-    clippy::from_over_into,
-    clippy::needless_borrow,
-    clippy::new_without_default,
-    clippy::useless_conversion
+missing_debug_implementations,
+missing_docs,
+unused_results,
+clippy::extra_unused_lifetimes,
+clippy::from_over_into,
+clippy::needless_borrow,
+clippy::new_without_default,
+clippy::useless_conversion
 )]
 #![forbid(rust_2018_idioms, unsafe_code)]
 #![allow(clippy::inherent_to_string, clippy::type_complexity)]
@@ -181,17 +181,20 @@ pub mod touch;
 pub mod widget;
 pub mod window;
 
-#[cfg(all(not(feature = "glow"), feature = "wgpu"))]
+#[cfg(all(not(feature = "glow"), not(feature = "skia"), feature = "wgpu"))]
 use iced_winit as runtime;
 
-#[cfg(feature = "glow")]
+#[cfg(any(feature = "glow", feature = "skia"))]
 use iced_glutin as runtime;
 
-#[cfg(all(not(feature = "glow"), feature = "wgpu"))]
+#[cfg(all(not(feature = "glow"), not(feature = "skia"), feature = "wgpu"))]
 use iced_wgpu as renderer;
 
-#[cfg(feature = "glow")]
+#[cfg(all(feature = "glow", not(feature = "skia"), not(feature = "wgpu")))]
 use iced_glow as renderer;
+
+#[cfg(feature = "skia")]
+use iced_skia as renderer;
 
 pub use iced_native::theme;
 pub use runtime::event;
